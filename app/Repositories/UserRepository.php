@@ -175,4 +175,19 @@ class UserRepository extends BaseRepository
     $this->setStatus(true);
     return $user;
   }
+
+  public function listUsers(string|null $type = null): LengthAwarePaginator
+{
+    $query = User::query();
+
+    if (!empty($type)) {
+        $query->where('role', 'user')
+            ->whereHas('patient', function ($query) use ($type) {
+                $query->where('patient_type', $type);
+            });
+    }
+
+    return $query->orderBy('name', 'ASC')->paginate(10);
+}
+
 }

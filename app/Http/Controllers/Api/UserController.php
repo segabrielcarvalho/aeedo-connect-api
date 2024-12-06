@@ -14,14 +14,26 @@ use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
 class UserController extends ApiController
 {
-    public function __construct(private UserRepository $userRepository){}
+    public function __construct(private UserRepository $userRepository) {}
+
     /**
-     * Display a listing of the resource.
+     * Display a listing of the resource by type.
      */
     public function listUsersByType(Request $request): AnonymousResourceCollection
     {
         $type = $request->get('type', null);
         $users = $this->userRepository->filterUserByType($type);
+
+        return UserResource::collection($users);
+    }
+
+    /**
+     * Display a listing of all users or filtered by type.
+     */
+    public function listUsers(Request $request): AnonymousResourceCollection
+    {
+        $type = $request->get('type', null);
+        $users = $this->userRepository->listUsers($type);
 
         return UserResource::collection($users);
     }
