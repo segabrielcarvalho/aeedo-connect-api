@@ -49,8 +49,10 @@ Route::middleware('auth:sanctum')->group(function() {
     Route::prefix('organs')->group(function() {
         Route::get('patient-organs/{patientId?}', [OrganController::class, 'listPatientOrgans']);
         Route::post('choose-organs', [OrganController::class, 'chooseOrgans']);
+        Route::get('all', [OrganController::class, 'listAllOrgans']);
     });
-
+    
+    
     Route::prefix('users')->group(function() {
         Route::get('/{search?}', [UserController::class, 'index']);
         Route::get('/{id}', [UserController::class, 'show']);

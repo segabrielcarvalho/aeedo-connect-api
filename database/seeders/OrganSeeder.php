@@ -20,50 +20,61 @@ class OrganSeeder extends Seeder
             [
                 'name' => 'células-tronco',
                 'organ_type' => 'nervoso',
+                'slug' => 'celulas-tronco'
             ],
             [
                 'name' => 'Fígado',
                 'organ_type' => 'digestivo',
+                'slug' => 'figado'
             ],
             [
                 'name' => 'Pulmões',
-                'organ_type' => 'respiratório'
+                'organ_type' => 'respiratório',
+                'slug' => 'pulmoes'
             ],
             [
                 'name' => 'Coração',
-                'organ_type' => 'circulatório'
+                'organ_type' => 'circulatório',
+                'slug' => 'coracao'
             ],
             [
                 'name' => 'Rins',
-                'organ_type' => 'urinário'
+                'organ_type' => 'urinário',
+                'slug' => 'rins'
             ],
             [
                 'name' => 'óvulos',
-                'organ_type' => 'reprodutor'
+                'organ_type' => 'reprodutor',
+                'slug' => 'ovulos'
             ],
             [
                 'name' => 'Pãncreas',
-                'organ_type' => 'endócrino'
+                'organ_type' => 'endócrino',
+                'slug' => 'pancreas'
             ],
             [
                 'name' => 'Cabelos',
-                'organ_type' => 'tegumentar'
+                'organ_type' => 'tegumentar',
+                'slug' => 'cabelos'
             ],
             [
                 'name' => 'Ossos',
-                'organ_type' => 'locomotor'
+                'organ_type' => 'locomotor',
+                'slug' => 'ossos'
             ],
             [
                 'name' => 'Tímpano',
-                'organ_type' => 'sensorial'
+                'organ_type' => 'sensorial',
+                'slug' => 'timpano'
             ],
         ];
-
+        
         foreach($organList as $organ)
         {
             $organArr[] = [
                 'id' => Uuid::uuid4(),
                 'name' => $organ['name'],
+                'slug' => $organ['slug'],
                 'organ_type' => $organ['organ_type'],
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),

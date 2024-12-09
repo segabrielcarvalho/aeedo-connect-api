@@ -42,4 +42,19 @@ class OrganController extends ApiController
 
         return (new PatientOrganResource($patient->load('user', 'organs')))->response();
     }
+
+    public function listAllOrgans(): JsonResponse
+    {
+        $organsList = $this->organRepository->listAllOrgans();
+
+        if (!$this->organRepository->getStatus()) {
+            return $this->errorResponse(
+                $this->organRepository->getErrorMessage(),
+                $this->organRepository->getStatusCode()
+            );
+        }
+
+        return OrganResource::collection($organsList)->response();
+    }
+
 }

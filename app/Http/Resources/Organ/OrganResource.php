@@ -17,6 +17,7 @@ class OrganResource extends JsonResource
         return [
             'name' => $this->name,
             'organType' => $this->organ_type,
+            'slug' => $this->slug,
         ];
     }
 }

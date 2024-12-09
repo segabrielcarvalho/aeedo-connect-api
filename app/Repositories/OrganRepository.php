@@ -114,6 +114,21 @@ class OrganRepository extends BaseRepository
     }
   }
 
+  public function listAllOrgans()
+  {
+      try {
+          $this->data = Organ::all();
+          $this->status = true;
+      } catch (\Exception $e) {
+          $this->status = false;
+          $this->errorMessage = 'Erro ao listar todos os órgãos.';
+          $this->statusCode = 500;
+      }
+
+      return $this->data;
+  }
+
+
   private function attachDetachOrgans(Patient $patient, array $organArr): Patient
   {
     if (!empty($organArr['disconnect'])) {
