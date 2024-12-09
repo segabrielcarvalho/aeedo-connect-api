@@ -121,26 +121,29 @@ class UserRepository extends BaseRepository
 
   private function registerUser(array $userData): User
   {
-      $isActive = isset($userData['is_active']) ? $userData['is_active'] : true;
-
+      $isActive = $userData['is_active'] ?? true;
+  
       $user = User::create([
-        'name' => $userData['name'],
-        'email' => $userData['email'],
-        'password' => $userData['password'],
-        'role' => $userData['role'],
-        'is_active' => $isActive
+          'name' => $userData['name'],
+          'email' => $userData['email'],
+          'password' => $userData['password'],
+          'role' => $userData['role'],
+          'is_active' => $isActive,
       ]);
-
+  
       $patient = new Patient();
-      $patient->patient_type = $userData['patient_type'];
-      $patient->blood_type = $userData['blood_type'];
+      $patient->patient_type = $userData['patient_type'] ?? null;
+      $patient->blood_type = $userData['blood_type'] ?? null;
       $user->patient()->save($patient);
-
-      $organIds = array_column($userData['organs'], 'id');
-      $patient->organs()->attach($organIds);
-
+  
+      if (!empty($userData['organs'])) {
+          $organIds = array_column($userData['organs'], 'id');
+          $patient->organs()->attach($organIds);
+      }
+  
       return $user;
   }
+  
 
   public function filterUsers(array $request): LengthAwarePaginator
   {

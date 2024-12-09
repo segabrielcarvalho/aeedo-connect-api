@@ -15,6 +15,7 @@ class OrganResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
+            'id' => $this->id,
             'name' => $this->name,
             'organType' => $this->organ_type,
             'slug' => $this->slug,

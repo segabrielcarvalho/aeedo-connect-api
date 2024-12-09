@@ -25,6 +25,7 @@ class UserResource extends JsonResource
             'role' => $this->role,
             'birthDate' => $this->birth_date,
             'createdAt' => $this->created_at,
+            'isActive' => $this->is_active,
             'patient' => new PatientResource($this->whenLoaded('patient')),
             'organs' => $this->when(!empty($this->patient->organs), function() {
                 return OrganResource::collection($this->patient->organs);

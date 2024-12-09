@@ -3,6 +3,7 @@
 namespace App\Http\Resources\Patient;
 
 use App\Http\Resources\Address\AddressResource;
+use App\Http\Resources\Hospital\HospitalResource;
 use App\Http\Resources\User\UserDetailsResource;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;

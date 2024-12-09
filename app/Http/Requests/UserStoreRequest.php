@@ -41,11 +41,12 @@ class UserStoreRequest extends FormRequest
                 'required_if:role,user',
                 new BloodTypeRule()
             ],
-            'organs' => 'required_if:role,user|array',
-            'organs.*.id' => 'required_if:role,user|string|exists:organs,id',
+            'organs' => 'array',
+            'organs.*.id' => 'string|exists:organs,id',
             'is_active' => 'nullable|boolean',
         ];
     }
+    
 
     public function messages(): array
     {
